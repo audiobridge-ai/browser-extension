@@ -83,6 +83,14 @@ or officially connected to any hardware manufacturers or service providers.
 
 ---
 
+## Known Limitations
+
+- AudioBridge requires users to provide their own OpenAI-compatible API key.
+- Transcription quality and cost depend on the selected API provider.
+- The extension does not provide built-in transcription services.
+
+---
+
 ## License
 
 License information will be added.
