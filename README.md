@@ -6,48 +6,75 @@ This project is designed for users who want **more control, transparency, and lo
 
 ---
 
-## 🔹 Official Download (Recommended)
+## 🚀 Primary Distribution: GitHub Releases (Recommended)
 
-### ✅ Microsoft Edge Add-ons Store
+Due to **slow and unpredictable review cycles in browser extension stores**, GitHub is currently the **primary and most up‑to‑date distribution channel** for AudioBridge.
 
-The **official and easiest way** to install AudioBridge is via the Microsoft Edge Add-ons Store:
+👉 **Please download AudioBridge from the GitHub Releases page** rather than cloning the repository.
 
-👉 **Download from Edge Store**
-[https://microsoftedge.microsoft.com/addons/detail/audiobridge/miaogglfmgibohjagbeheieeplhpjdai](https://microsoftedge.microsoft.com/addons/detail/audiobridge/miaogglfmgibohjagbeheieeplhpjdai)
+**Why Releases?**
 
-This version is fully reviewed and automatically updated.
+* Contains verified, ready‑to‑install builds
+* Matches the latest features and bug fixes
+* No build steps required
+
+> ⚠️ This repository is primarily for documentation and usage instructions and does not contain the full extension source code, so cloning the repository is unnecessary for installation.
 
 ---
 
-## 🔹 Chrome Users (Manual Installation)
+## 📦 Download & Installation (Chrome / Edge)
 
-Due to ongoing Chrome Web Store review limitations, AudioBridge is currently distributed to Chrome users via **manual installation**.
+### Step 1: Download from GitHub Releases
 
-This method is intended for **advanced users** who are comfortable enabling Developer Mode.
+1. Go to the **Releases** page of this repository
+2. Download the latest **unpacked extension ZIP**
+3. Unzip it to a local folder
 
-### 📦 Installation via Unpacked Extension
+---
 
-1. Download the latest **unpacked build** from this GitHub repository.
-2. Unzip the folder to a local directory.
-3. Open Chrome and navigate to:
+### Step 2: Install via Developer Mode
+
+#### Chrome
+
+1. Open Chrome and navigate to:
    `chrome://extensions`
-4. Enable **Developer mode** (top right corner).
-5. Click **Load unpacked**.
-6. Select the unzipped extension folder.
-7. The AudioBridge icon will appear in the toolbar.
+2. Enable **Developer mode** (top‑right corner)
+3. Click **Load unpacked**
+4. Select the unzipped AudioBridge folder
+5. The AudioBridge icon will appear in the toolbar
 
-⚠️ Note: Manual installations do not support automatic updates. You will need to reinstall when a new version is released.
+#### Microsoft Edge
+
+1. Open Edge and navigate to:
+   `edge://extensions`
+2. Enable **Developer mode**
+3. Click **Load unpacked**
+4. Select the unzipped AudioBridge folder
+
+⚠️ Manual installations do not support automatic updates. Please check GitHub Releases periodically for updates.
 
 ---
 
-## 🔹 How It Works
+## 🏬 Official Store Availability
+
+### ✅ Microsoft Edge Add‑ons Store
+
+An officially reviewed version is also available on the Microsoft Edge Add‑ons Store:
+
+👉 [https://microsoftedge.microsoft.com/addons/detail/audiobridge/miaogglfmgibohjagbeheieeplhpjdai](https://microsoftedge.microsoft.com/addons/detail/audiobridge/miaogglfmgibohjagbeheieeplhpjdai)
+
+Note: Store versions may lag behind GitHub Releases.
+
+---
+
+## 🔧 How It Works
 
 1. Log in to your PLAUD account in the browser
 2. Open a page with existing audio recordings
 3. Click the AudioBridge extension icon
 4. Configure your OpenAI‑compatible API key and Base URL
 5. Select an audio recording and start transcription
-6. The transcript will appear alongside the original recording in PLAUD
+6. The transcript appears alongside the original recording in PLAUD
 
 Audio files and transcripts are **not stored** on AudioBridge servers.
 
