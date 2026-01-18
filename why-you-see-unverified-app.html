@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Why Do I See "This App Isn't Verified"?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    :root {
+      --bg: #f7f8fa;
+      --card: #ffffff;
+      --primary: #2563eb;
+      --text: #111827;
+      --subtext: #4b5563;
+      --border: #e5e7eb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 32px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 28px;
+    }
+
+    h2 {
+      margin-top: 32px;
+      font-size: 22px;
+    }
+
+    p {
+      color: var(--subtext);
+      margin: 12px 0;
+    }
+
+    ul {
+      padding-left: 20px;
+      color: var(--subtext);
+    }
+
+    li {
+      margin: 8px 0;
+    }
+
+    .notice {
+      border-left: 4px solid var(--primary);
+      background: #eef2ff;
+      padding: 16px 20px;
+      border-radius: 6px;
+      margin: 24px 0;
+    }
+
+    .steps {
+      margin-top: 24px;
+    }
+
+    .step {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 28px;
+      align-items: flex-start;
+    }
+
+    .step-number {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    .step-content h3 {
+      margin: 0 0 6px 0;
+      font-size: 18px;
+    }
+
+    .screenshot {
+      margin: 16px 0;
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fafafa;
+      overflow: hidden;
+    }
+
+    .screenshot img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 4px;
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 14px;
+      color: #9ca3af;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>Why Do I See "This App Isn't Verified"?</h1>
+
+      <p>
+        When signing in with Google while using AudioBridge, you may see a page
+        that says <strong>"This app isn't verified"</strong>.
+        This is a standard security notice shown by Google and does not mean
+        that the app is unsafe.
+      </p>
+
+      <div class="notice">
+        <strong>Important:</strong>
+        AudioBridge is currently undergoing Google's official OAuth verification
+        process. Until the review is completed, Google displays this warning by
+        default for all users.
+      </div>
+
+      <h2>Why does Google show this warning?</h2>
+      <p>
+        Google requires apps that access certain Google services to complete
+        an external verification process. While this review is in progress,
+        Google automatically shows the "unverified app" notice.
+      </p>
+
+      <ul>
+        <li>The app is still under review by Google</li>
+        <li>The verification process has not yet been completed</li>
+        <li>This is a precautionary message from Google</li>
+      </ul>
+
+      <h2>How to continue (optional)</h2>
+      <p>
+        If you understand the reason for this notice and choose to continue,
+        Google allows you to proceed manually. This choice is entirely up to you.
+      </p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Click "Advanced"</h3>
+            <p>
+              On the Google warning page, click the <strong>"Advanced"</strong>
+              link to see additional options.
+            </p>
+            <div class="screenshot">
+              <img src="./images/Google_verifiy_1.png" alt="Google warning page with 'Advanced' highlighted" />
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Select "Go to AudioBridge (unsafe)"</h3>
+            <p>
+              Click the link that allows you to continue to AudioBridge.
+              This simply tells Google that you trust this app.
+            </p>
+            <div class="screenshot">
+              <img src="./images/Google_verify_2.png" alt="'Go to AudioBridge (unsafe)' option" />
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Complete the sign-in process</h3>
+            <p>
+              You will then see the standard Google authorization screen and
+              can continue using AudioBridge normally.
+            </p>
+            <div class="screenshot">
+              <img src="./images/Google_verify_3.jpg" alt="Google authorization consent screen" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2>Is my data safe?</h2>
+      <p>
+        AudioBridge only accesses data that you explicitly choose and does not
+        collect or store your Google data on developer-controlled servers.
+        You can review our <a href="./privacy.html">Privacy Policy</a> for details.
+      </p>
+
+      <h2>What happens next?</h2>
+      <p>
+        Once Google completes the verification process, this warning page will
+        no longer appear. No action will be required from users.
+      </p>
+
+      <footer>
+        <p>
+          This page is provided for informational purposes only and is not
+          affiliated with or endorsed by Google.
+        </p>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
