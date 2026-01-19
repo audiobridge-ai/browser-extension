@@ -4,6 +4,142 @@
   <meta charset="utf-8" />
   <title>AudioBridge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f4f6fb;
+      --text: #0b1220;
+      --muted: #475467;
+      --line: #e4e7ec;
+      --accent: #111827;
+      --glow-1: #4f46e5;
+      --glow-2: #06b6d4;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Helvetica Neue", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      background: radial-gradient(circle at 20% 10%, rgba(79, 70, 229, 0.08), transparent 45%),
+        radial-gradient(circle at 80% 0%, rgba(6, 182, 212, 0.08), transparent 40%),
+        var(--bg);
+      color: var(--text);
+    }
+
+    .page {
+      min-height: 100vh;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 72px 6vw;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand {
+      position: absolute;
+      top: 32px;
+      left: 6vw;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      width: 100%;
+      max-width: 1240px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 56px;
+      align-items: start;
+      height: 100%;
+    }
+
+    .content {
+      align-self: center;
+    }
+
+    .tagline {
+      margin: 0 0 40px;
+      font-size: clamp(24px, 4vw, 42px);
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--text);
+    }
+
+    .actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      color: var(--accent);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn.primary {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+      box-shadow: 0 10px 30px rgba(17, 24, 39, 0.2);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 24px rgba(17, 24, 39, 0.12);
+    }
+
+    .meta {
+      margin-top: 28px;
+      font-size: 14px;
+      color: #98a2b3;
+    }
+
+    .visual {
+      position: relative;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      align-self: center;
+    }
+
+    .visual img {
+      width: auto;
+      max-width: 100%;
+      max-height: 72vh;
+      border-radius: 12px;
+      box-shadow: 0 28px 70px rgba(16, 24, 40, 0.18);
+      object-fit: contain;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .visual {
+        height: min(360px, 70vw);
+      }
+    }
+  </style>
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-T04W5G323N"></script>
@@ -16,22 +152,27 @@
   </script>
 </head>
 <body>
-  <h1>AudioBridge</h1>
-
-  <p>
-    AudioBridge is a browser extension for transcribing user-owned audio files.
-  </p>
-
-  <p>
-    <a href="https://github.com/audiobridge-ai/browser-extension">
-      View on GitHub
-    </a>
-  </p>
-
-  <p>
-    <a href="https://audiobridge-ai.github.io/browser-extension/privacy.html">
-      Privacy Policy
-    </a>
-  </p>
+  <main class="page">
+    <div class="brand">AudioBridge</div>
+    <section class="hero">
+      <div class="content">
+        <p class="tagline">
+          Turning audio into a first-class citizen in your personal knowledge workflow.
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="https://github.com/audiobridge-ai/browser-extension">
+            View on GitHub
+          </a>
+          <a class="btn" href="https://audiobridge-ai.github.io/browser-extension/privacy.html">
+            Privacy Policy
+          </a>
+        </div>
+        <div class="meta">Private by default. Built for your knowledge workflow.</div>
+      </div>
+      <div class="visual" aria-hidden="true">
+        <img src="images/audiobridge.png" alt="AudioBridge preview" />
+      </div>
+    </section>
+  </main>
 </body>
 </html>
