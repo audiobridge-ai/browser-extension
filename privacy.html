@@ -4,62 +4,200 @@
   <meta charset="utf-8" />
   <title>Privacy Policy – AudioBridge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --accent: #4f46e5;
+      --line: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "Helvetica Neue", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      background: radial-gradient(circle at 20% 10%, rgba(79, 70, 229, 0.12), transparent 45%),
+        radial-gradient(circle at 90% 0%, rgba(14, 165, 233, 0.08), transparent 40%),
+        var(--bg);
+      color: var(--text);
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 64px 6vw 80px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .content {
+      width: 100%;
+      max-width: 860px;
+    }
+
+    .hero {
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.2;
+    }
+
+    .updated {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 28px 32px;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+    }
+
+    section + section {
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 20px;
+    }
+
+    p {
+      margin: 0 0 12px;
+      line-height: 1.7;
+      color: var(--text);
+    }
+
+    ul {
+      margin: 0 0 12px 20px;
+      padding: 0;
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .footer {
+      margin-top: 24px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 600px) {
+      .page {
+        padding: 48px 6vw 64px;
+      }
+
+      .card {
+        padding: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Privacy Policy – AudioBridge</h1>
+  <main class="page">
+    <div class="content">
+      <header class="hero">
+        <p class="eyebrow">AudioBridge</p>
+        <h1>Privacy Policy</h1>
+        <p class="updated"><strong>Last updated:</strong> 2026-01-02</p>
+      </header>
 
-  <p><strong>Last updated:</strong> 2026-01-02</p>
+      <div class="card">
+        <section>
+          <p>
+            AudioBridge respects your privacy.
+          </p>
+        </section>
 
-  <p>
-    AudioBridge respects your privacy.
-  </p>
+        <section>
+          <h2>Data Collection</h2>
+          <p>
+            AudioBridge does not collect, store, or transmit user data to any
+            developer-controlled servers.
+          </p>
+        </section>
 
-  <h2>Data Collection</h2>
-  <p>
-    AudioBridge does not collect, store, or transmit user data to any
-    developer-controlled servers.
-  </p>
+        <section>
+          <h2>Data Processing</h2>
+          <p>
+            The extension processes the following data solely to provide its functionality:
+          </p>
+          <ul>
+            <li>Audio recordings from the user’s PLAUD account</li>
+            <li>Transcription text generated using the user’s selected API</li>
+            <li>User-provided API configuration (API key and endpoint)</li>
+          </ul>
+          <p>
+            All processing is initiated by the user and performed locally or directly
+            between the user’s browser and the selected API provider.
+          </p>
+        </section>
 
-  <h2>Data Processing</h2>
-  <p>
-    The extension processes the following data solely to provide its functionality:
-  </p>
-  <ul>
-    <li>Audio recordings from the user’s PLAUD account</li>
-    <li>Transcription text generated using the user’s selected API</li>
-    <li>User-provided API configuration (API key and endpoint)</li>
-  </ul>
-  <p>
-    All processing is initiated by the user and performed locally or directly
-    between the user’s browser and the selected API provider.
-  </p>
+        <section>
+          <h2>Data Storage</h2>
+          <p>
+            Any configuration data or temporary files are stored locally on the user’s
+            device and can be removed by uninstalling the extension.
+          </p>
+        </section>
 
-  <h2>Data Storage</h2>
-  <p>
-    Any configuration data or temporary files are stored locally on the user’s
-    device and can be removed by uninstalling the extension.
-  </p>
+        <section>
+          <h2>Third-Party Services</h2>
+          <p>
+            AudioBridge communicates only with the following third-party services:
+          </p>
+          <ul>
+            <li>PLAUD web services</li>
+            <li>The OpenAI or OpenAI-compatible API endpoint specified by the user</li>
+          </ul>
+          <p>
+            AudioBridge does not use analytics, tracking, or advertising services.
+          </p>
+        </section>
 
-  <h2>Third-Party Services</h2>
-  <p>
-    AudioBridge communicates only with the following third-party services:
-  </p>
-  <ul>
-    <li>PLAUD web services</li>
-    <li>The OpenAI or OpenAI-compatible API endpoint specified by the user</li>
-  </ul>
-  <p>
-    AudioBridge does not use analytics, tracking, or advertising services.
-  </p>
+        <section>
+          <h2>Contact</h2>
+          <p>
+            If you have questions about this privacy policy, please contact us via:
+          </p>
+          <p>
+            <a href="https://github.com/audiobridge-ai/browser-extension/issues">
+              https://github.com/audiobridge-ai/browser-extension/issues
+            </a>
+          </p>
+        </section>
+      </div>
 
-  <h2>Contact</h2>
-  <p>
-    If you have questions about this privacy policy, please contact us via:
-  </p>
-  <p>
-    <a href="https://github.com/audiobridge-ai/browser-extension/issues">
-      https://github.com/audiobridge-ai/browser-extension/issues
-    </a>
-  </p>
+      <p class="footer">Private by default. Built for your knowledge workflow.</p>
+    </div>
+  </main>
 </body>
 </html>
