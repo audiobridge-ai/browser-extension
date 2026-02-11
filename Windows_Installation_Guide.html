@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Windows Installation Guide (Unsigned Installer)</title>
+  <style>
+    :root {
+      --ink: #101418;
+      --muted: #475569;
+      --accent: #1c64f2;
+      --accent-weak: #e7efff;
+      --warning: #b45309;
+      --warning-weak: #fff3df;
+      --card: #ffffff;
+      --border: #e5e9f0;
+      --shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
+      --radius: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Iowan Old Style", "Charter", "Palatino Linotype", "Book Antiqua", Palatino, serif;
+      background:
+        radial-gradient(1200px 420px at 12% -10%, #dfeefe 0%, transparent 60%),
+        radial-gradient(900px 360px at 88% -10%, #e9f5ec 0%, transparent 55%),
+        linear-gradient(180deg, #f7f9fc 0%, #eef2f7 100%);
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: auto;
+      z-index: 0;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      opacity: 0.22;
+      pointer-events: none;
+    }
+
+    body::before {
+      top: 8%;
+      left: -120px;
+      background: radial-gradient(circle, #8cc5ff 0%, transparent 70%);
+    }
+
+    body::after {
+      bottom: -140px;
+      right: -80px;
+      background: radial-gradient(circle, #9ee6c7 0%, transparent 70%);
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 980px;
+      margin: 48px auto 80px;
+      padding: 0 20px;
+    }
+
+    .animate {
+      animation: fadeUp 0.6s ease both;
+      animation-delay: var(--delay, 0s);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #1c64f2 0%, #143b8f 55%, #1c64f2 100%);
+      color: #ffffff;
+      padding: 36px 40px;
+      border-radius: calc(var(--radius) + 6px);
+      box-shadow: var(--shadow);
+    }
+
+    .hero h1 {
+      margin: 0 0 12px;
+      font-family: "Avenir Next", "Segoe UI", "Trebuchet MS", sans-serif;
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: 0.4px;
+    }
+
+    .hero .lead {
+      margin: 0;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.92);
+      max-width: 720px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 0.85rem;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      font-family: "Avenir Next", "Segoe UI", "Trebuchet MS", sans-serif;
+    }
+
+    .card {
+      margin-top: 26px;
+      padding: 26px 30px;
+      border-radius: var(--radius);
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+    }
+
+    .card h2 {
+      margin: 0 0 12px;
+      font-size: 1.4rem;
+      font-family: "Avenir Next", "Segoe UI", "Trebuchet MS", sans-serif;
+    }
+
+    .subhead {
+      margin: 0 0 16px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .hint {
+      margin: 0 0 16px;
+      color: var(--muted);
+    }
+
+    .steps {
+      counter-reset: step;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 16px;
+    }
+
+    .steps li {
+      position: relative;
+      padding-left: 46px;
+      line-height: 1.6;
+    }
+
+    .steps li::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: var(--accent-weak);
+      color: var(--accent);
+      font-weight: 700;
+      font-family: "Avenir Next", "Segoe UI", "Trebuchet MS", sans-serif;
+    }
+
+    .example {
+      margin-top: 8px;
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: #f4f6fb;
+      border: 1px solid #e4e8f1;
+    }
+
+    code {
+      font-family: "SFMono-Regular", "Menlo", "Consolas", "Liberation Mono", monospace;
+      font-size: 0.95rem;
+      color: #1f2937;
+    }
+
+    .callout {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-radius: 14px;
+      background: var(--accent-weak);
+      border-left: 4px solid var(--accent);
+      color: #173b6a;
+      font-weight: 600;
+    }
+
+    .warning {
+      background: var(--warning-weak);
+      border-left: 4px solid var(--warning);
+      color: #7a3b05;
+    }
+
+    .success {
+      margin-top: 18px;
+      font-weight: 600;
+      color: #0f5132;
+      background: #e6f6ee;
+      border-radius: 12px;
+      padding: 10px 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .success::before {
+      content: "\2713";
+      font-size: 1.1rem;
+    }
+
+    blockquote {
+      margin: 0;
+      padding: 16px 18px;
+      background: #f1f5ff;
+      border-radius: 14px;
+      border-left: 4px solid #6a8dff;
+      color: #2c3f7a;
+      font-style: italic;
+    }
+
+    .footnote {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .hero {
+        padding: 28px 24px;
+      }
+
+      .card {
+        padding: 22px;
+      }
+
+      .steps li {
+        padding-left: 40px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .animate {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="hero animate" style="--delay: 0s;">
+      <h1>Windows Installation Guide (Unsigned Installer)</h1>
+      <p class="lead">
+        Because this app is distributed without a Microsoft code-signing certificate, Windows may display a security warning
+        during installation. This is normal behavior for independent software and does not indicate malware.
+      </p>
+      <div class="meta">
+        <span class="pill">Windows</span>
+        <span class="pill">Unsigned Installer</span>
+        <span class="pill">SmartScreen</span>
+      </div>
+    </header>
+
+    <section class="card animate" style="--delay: 0.1s;">
+      <h2>Method 1 (Most Common)</h2>
+      <p class="subhead">&ldquo;More info&rdquo; &rarr; &ldquo;Run anyway&rdquo; (Windows SmartScreen)</p>
+      <p class="hint">This is the standard and recommended way.</p>
+      <ol class="steps">
+        <li>
+          Double-click the installer.
+          <div class="example"><code>YourAppSetup.exe</code></div>
+        </li>
+        <li>
+          Windows will show a blue warning screen:
+          <div class="callout">&ldquo;Windows protected your PC&rdquo; &mdash; Microsoft Defender SmartScreen prevented an unrecognized app from starting.</div>
+        </li>
+        <li>Click <strong>More info</strong>.</li>
+        <li>Click <strong>Run anyway</strong>.</li>
+        <li>Follow the on-screen instructions to complete installation.</li>
+      </ol>
+      <div class="success">After this, Windows usually remembers your choice and will not block it again.</div>
+    </section>
+
+    <section class="card animate" style="--delay: 0.2s;">
+      <h2>Method 2 (If Windows Defender blocks the file)</h2>
+      <p class="subhead">Allow the installer in Windows Security</p>
+      <p class="hint">Use this if the file was blocked or removed after download.</p>
+      <ol class="steps">
+        <li>
+          Open <strong>Windows Security</strong>.
+          <div class="example"><code>Start Menu &rarr; search &ldquo;Windows Security&rdquo;</code></div>
+        </li>
+        <li>Go to <code>Virus &amp; threat protection</code>.</li>
+        <li>Click <strong>Protection history</strong>.</li>
+        <li>Find the entry related to your installer.</li>
+        <li>
+          Click it, then choose <strong>Allow on device</strong> or <strong>Restore</strong>.
+        </li>
+        <li>Run the installer again.</li>
+      </ol>
+    </section>
+
+    <section class="card animate" style="--delay: 0.3s;">
+      <h2>One-line explanation for users</h2>
+      <blockquote>
+        If Windows shows &ldquo;Windows protected your PC&rdquo;, click <strong>More info</strong> and then <strong>Run anyway</strong>.
+        This is a normal Windows security check for unsigned apps.
+      </blockquote>
+      <p class="footnote">You can reuse this line in user support replies.</p>
+    </section>
+  </main>
+</body>
+</html>

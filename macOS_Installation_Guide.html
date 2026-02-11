@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>macOS Installation Guide (Unsigned PKG)</title>
+  <style>
+    :root {
+      --ink: #121417;
+      --muted: #4b5563;
+      --accent: #0b6e99;
+      --accent-weak: #e1f1f7;
+      --warning: #c25d10;
+      --warning-weak: #fff1e5;
+      --card: #ffffff;
+      --border: #e6e9ef;
+      --shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
+      --radius: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Iowan Old Style", "Charter", "Palatino Linotype", "Book Antiqua", Palatino, serif;
+      background:
+        radial-gradient(1200px 420px at 15% -10%, #dff4f2 0%, transparent 60%),
+        radial-gradient(900px 360px at 85% -10%, #e6efff 0%, transparent 55%),
+        linear-gradient(180deg, #f6f7fb 0%, #eef3f9 100%);
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: auto;
+      z-index: 0;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      filter: blur(0px);
+      opacity: 0.22;
+      pointer-events: none;
+    }
+
+    body::before {
+      top: 12%;
+      left: -120px;
+      background: radial-gradient(circle, #9ed9e8 0%, transparent 70%);
+    }
+
+    body::after {
+      bottom: -140px;
+      right: -80px;
+      background: radial-gradient(circle, #a7b9ff 0%, transparent 70%);
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 980px;
+      margin: 48px auto 80px;
+      padding: 0 20px;
+    }
+
+    .animate {
+      animation: fadeUp 0.6s ease both;
+      animation-delay: var(--delay, 0s);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #0b6e99 0%, #0a4f73 55%, #0b6e99 100%);
+      color: #ffffff;
+      padding: 36px 40px;
+      border-radius: calc(var(--radius) + 6px);
+      box-shadow: var(--shadow);
+    }
+
+    .hero h1 {
+      margin: 0 0 12px;
+      font-family: "Avenir Next", "Segoe UI", "Trebuchet MS", sans-serif;
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: 0.4px;
+    }
+
+    .hero .lead {
+      margin: 0;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.92);
+      max-width: 720px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 0.85rem;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      font-family: "Avenir Next", "Segoe UI", "Trebuchet MS", sans-serif;
+    }
+
+    .card {
+      margin-top: 26px;
+      padding: 26px 30px;
+      border-radius: var(--radius);
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+    }
+
+    .card h2 {
+      margin: 0 0 12px;
+      font-size: 1.4rem;
+      font-family: "Avenir Next", "Segoe UI", "Trebuchet MS", sans-serif;
+    }
+
+    .subhead {
+      margin: 0 0 16px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .hint {
+      margin: 0 0 16px;
+      color: var(--muted);
+    }
+
+    .steps {
+      counter-reset: step;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 16px;
+    }
+
+    .steps li {
+      position: relative;
+      padding-left: 46px;
+      line-height: 1.6;
+    }
+
+    .steps li::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: var(--accent-weak);
+      color: var(--accent);
+      font-weight: 700;
+      font-family: "Avenir Next", "Segoe UI", "Trebuchet MS", sans-serif;
+    }
+
+    .example {
+      margin-top: 8px;
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: #f4f6fb;
+      border: 1px solid #e4e8f1;
+    }
+
+    code {
+      font-family: "SFMono-Regular", "Menlo", "Consolas", "Liberation Mono", monospace;
+      font-size: 0.95rem;
+      color: #1f2937;
+    }
+
+    pre {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 16px 18px;
+      border-radius: 14px;
+      overflow-x: auto;
+      margin: 12px 0 0;
+    }
+
+    pre code {
+      color: inherit;
+    }
+
+    .callout {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-radius: 14px;
+      background: var(--accent-weak);
+      border-left: 4px solid var(--accent);
+      color: #124257;
+      font-weight: 600;
+    }
+
+    .warning {
+      background: var(--warning-weak);
+      border-left: 4px solid var(--warning);
+      color: #6a3308;
+    }
+
+    .success {
+      margin-top: 18px;
+      font-weight: 600;
+      color: #0f5132;
+      background: #e6f6ee;
+      border-radius: 12px;
+      padding: 10px 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .success::before {
+      content: "\2713";
+      font-size: 1.1rem;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .checklist li {
+      position: relative;
+      padding-left: 30px;
+      line-height: 1.6;
+    }
+
+    .checklist li::before {
+      content: "\2713";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    blockquote {
+      margin: 0;
+      padding: 16px 18px;
+      background: #f5f6ff;
+      border-radius: 14px;
+      border-left: 4px solid #7c8df7;
+      color: #2f3561;
+      font-style: italic;
+    }
+
+    .footnote {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .hero {
+        padding: 28px 24px;
+      }
+
+      .card {
+        padding: 22px;
+      }
+
+      .steps li {
+        padding-left: 40px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .animate {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="hero animate" style="--delay: 0s;">
+      <h1>macOS Installation Guide (Unsigned PKG)</h1>
+      <p class="lead">
+        Because this app is distributed as an unsigned <strong>.pkg</strong> installer (not notarized by Apple),
+        macOS Gatekeeper may block it on first install. This is expected behavior on macOS and does not mean the app is unsafe.
+      </p>
+      <div class="meta">
+        <span class="pill">macOS</span>
+        <span class="pill">Unsigned PKG</span>
+        <span class="pill">Gatekeeper</span>
+      </div>
+    </header>
+
+    <section class="card animate" style="--delay: 0.1s;">
+      <h2>Method 1 (Recommended)</h2>
+      <p class="subhead">Right-click &rarr; Open the PKG installer</p>
+      <p class="hint">This is the simplest and Apple-recommended way.</p>
+      <ol class="steps">
+        <li>
+          Locate the downloaded installer.
+          <div class="example"><code>YourAppInstaller.pkg</code></div>
+        </li>
+        <li>Right-click the <code>.pkg</code> file (or hold <strong>Control</strong> and click).</li>
+        <li>Select <strong>Open</strong>.</li>
+        <li>
+          A security dialog will appear saying the developer cannot be verified.
+          Click <strong>Open</strong> to confirm.
+        </li>
+        <li>Follow the on-screen steps to finish installation.</li>
+      </ol>
+      <div class="success">After this, the installer will not be blocked again.</div>
+    </section>
+
+    <section class="card animate" style="--delay: 0.2s;">
+      <h2>Method 2 (If the installer was already blocked)</h2>
+      <p class="subhead">System Settings &rarr; Privacy &amp; Security &rarr; Open Anyway</p>
+      <p class="hint">Use this if the user double-clicked the PKG and it failed.</p>
+      <ol class="steps">
+        <li>
+          Double-click the <code>.pkg</code> installer. macOS shows:
+          <div class="callout">&ldquo;This package can&rsquo;t be opened because it is from an unidentified developer.&rdquo;</div>
+        </li>
+        <li>
+          Open
+          <div class="example"><code>System Settings &rarr; Privacy &amp; Security</code></div>
+        </li>
+        <li>Scroll down to the <strong>Security</strong> section.</li>
+        <li>
+          You will see a message like:
+          <div class="callout">&ldquo;YourAppInstaller.pkg was blocked from use because it is not from an identified developer.&rdquo;</div>
+        </li>
+        <li>Click <strong>Open Anyway</strong>.</li>
+        <li>Confirm by clicking <strong>Open</strong>.</li>
+        <li>The installer will now run normally.</li>
+      </ol>
+    </section>
+
+    <section class="card animate" style="--delay: 0.3s;">
+      <h2>Method 3 (Advanced users only)</h2>
+      <p class="subhead">Remove Gatekeeper quarantine via Terminal</p>
+      <div class="callout warning">Recommend this only for technical users.</div>
+      <ol class="steps">
+        <li>Open <strong>Terminal</strong>.</li>
+        <li>
+          Run the command below (adjust the path if needed):
+          <pre><code>sudo xattr -rd com.apple.quarantine ~/Downloads/YourAppInstaller.pkg</code></pre>
+        </li>
+        <li>Enter your macOS password (input will not be visible).</li>
+        <li>Double-click the <code>.pkg</code> installer again.</li>
+      </ol>
+    </section>
+
+    <section class="card animate" style="--delay: 0.4s;">
+      <h2>Important Notes</h2>
+      <ul class="checklist">
+        <li>This behavior is part of macOS Gatekeeper.</li>
+        <li>Apple requires a paid Developer Program membership for notarization.</li>
+        <li>The app itself is unchanged and safe to install.</li>
+        <li>You do not need to disable system security or Gatekeeper.</li>
+      </ul>
+    </section>
+
+    <section class="card animate" style="--delay: 0.5s;">
+      <h2>One-line explanation you can show users</h2>
+      <blockquote>
+        If macOS says the installer is from an unidentified developer, right-click the <code>.pkg</code>
+        file and choose <strong>Open</strong>, then confirm. This is a normal macOS security check.
+      </blockquote>
+      <p class="footnote">You can paste the line above into support replies or release notes.</p>
+    </section>
+  </main>
+</body>
+</html>
